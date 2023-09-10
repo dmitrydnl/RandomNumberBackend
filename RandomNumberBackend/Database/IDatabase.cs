@@ -16,5 +16,7 @@ namespace RandomNumberBackend.Database
         public List<int> GetUserStatistics(string nickname);
 
         public bool Authorization(string nickname, string password);
+
+        public bool Registration(string nickname, string password);
     }
 }

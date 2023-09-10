@@ -83,5 +83,15 @@ namespace RandomNumberBackend.Database
 
             return false;
         }
+
+        public bool Registration(string nickname, string password)
+        {
+            if (userToPassword.TryAdd(nickname, password))
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }
