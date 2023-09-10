@@ -12,7 +12,11 @@ namespace RandomNumberBackend.Database
         public DatabaseLocal()
         {
             currentGames = new ConcurrentDictionary<string, int>();
-            userGames = new ConcurrentDictionary<string, List<int>>();
+            userGames = new ConcurrentDictionary<string, List<int>>()
+            {
+                ["cat"] = new List<int> { 37, 68 },
+                ["dog"] = new List<int> { 2, 8, 99 }
+            };
         }
 
         public bool CreateGame(string nickname, int hiddenNumber)
