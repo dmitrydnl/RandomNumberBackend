@@ -27,16 +27,16 @@ namespace RandomNumberBackend
 
             if (string.IsNullOrEmpty(nickname))
             {
-                return new BadRequestResult();
+                return new BadRequestObjectResult($"nickname is empty");
             }
 
             if (string.IsNullOrEmpty(myNumberRaw) || !Int32.TryParse(myNumberRaw, out int myNumber))
             {
-                return new BadRequestResult();
+                return new BadRequestObjectResult($"myNumber is empty or not a number");
+
             }
 
-            string responseMessage = $"{nickname} your number is {myNumber}.";
-            return new OkObjectResult(responseMessage);
+            return new OkObjectResult($"{nickname} your number is {myNumber}.");
         }
     }
 }
