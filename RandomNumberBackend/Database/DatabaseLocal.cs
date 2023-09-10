@@ -40,7 +40,7 @@ namespace RandomNumberBackend.Database
             {
                 userGames.AddOrUpdate(nickname, new List<int> { hiddenNumber }, (key, oldValue) =>
                 {
-                    List<int> copy = new List<int>(oldValue);
+                    var copy = new List<int>(oldValue);
                     copy.Add(hiddenNumber);
                     return copy;
                 });

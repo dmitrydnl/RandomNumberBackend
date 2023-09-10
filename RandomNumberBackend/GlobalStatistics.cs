@@ -26,7 +26,7 @@ namespace RandomNumberBackend
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
         {
-            KeyValuePair<string, List<int>>[] statistics = database.GetGlobalStatistics();
+            var statistics = database.GetGlobalStatistics();
             return new OkObjectResult(statistics);
         }
     }

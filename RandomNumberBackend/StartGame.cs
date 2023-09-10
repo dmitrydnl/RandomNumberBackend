@@ -41,7 +41,7 @@ namespace RandomNumberBackend
                 return new BadRequestObjectResult("nickname is empty");
             }
 
-            int hiddenNumber = numberGenerator.Generate();
+            var hiddenNumber = numberGenerator.Generate();
 
             if (!database.CreateGame(nickname, hiddenNumber))
             {

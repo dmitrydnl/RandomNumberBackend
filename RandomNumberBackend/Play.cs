@@ -47,13 +47,13 @@ namespace RandomNumberBackend
 
             }
 
-            int? hiddenNumber = database.GetCurrentGame(nickname);
+            var hiddenNumber = database.GetCurrentGame(nickname);
             if (hiddenNumber is null)
             {
                 return new BadRequestObjectResult("Current game not exist");
             }
 
-            NumberValidatorStatus status = numberValidator.Validate(myNumber, hiddenNumber.Value);
+            var status = numberValidator.Validate(myNumber, hiddenNumber.Value);
             switch (status)
             {
                 case NumberValidatorStatus.Greater:
