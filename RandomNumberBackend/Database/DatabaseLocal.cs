@@ -26,5 +26,10 @@ namespace RandomNumberBackend.Database
 
             return null;
         }
+
+        public void FinishGame(string nickname)
+        {
+            currentGames.TryRemove(nickname, out int hiddenNumber);
+        }
     }
 }

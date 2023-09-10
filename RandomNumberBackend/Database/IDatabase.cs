@@ -7,5 +7,7 @@ namespace RandomNumberBackend.Database
         public bool CreateGame(string nickname, int hiddenNumber);
 
         public int? GetCurrentGame(string nickname);
+
+        public void FinishGame(string nickname);
     }
 }
