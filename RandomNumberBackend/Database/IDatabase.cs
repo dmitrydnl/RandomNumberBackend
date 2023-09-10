@@ -18,5 +18,7 @@ namespace RandomNumberBackend.Database
         public bool Authorization(string nickname, string password);
 
         public bool Registration(string nickname, string password);
+
+        public bool IsUserExist(string nickname);
     }
 }

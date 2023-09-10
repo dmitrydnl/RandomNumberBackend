@@ -36,6 +36,11 @@ namespace RandomNumberBackend
                 return new BadRequestObjectResult("nickname is empty");
             }
 
+            if (!database.IsUserExist(nickname))
+            {
+                return new UnauthorizedResult();
+            }
+
             var statistics = database.GetUserStatistics(nickname);
             return new OkObjectResult(statistics);
         }

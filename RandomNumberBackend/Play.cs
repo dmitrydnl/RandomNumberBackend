@@ -47,6 +47,11 @@ namespace RandomNumberBackend
 
             }
 
+            if (!database.IsUserExist(nickname))
+            {
+                return new UnauthorizedResult();
+            }
+
             var hiddenNumber = database.GetCurrentGame(nickname);
             if (hiddenNumber is null)
             {

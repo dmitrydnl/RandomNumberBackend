@@ -93,5 +93,15 @@ namespace RandomNumberBackend.Database
 
             return false;
         }
+
+        public bool IsUserExist(string nickname)
+        {
+            if (userToPassword.TryGetValue(nickname, out string userPassword))
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }
