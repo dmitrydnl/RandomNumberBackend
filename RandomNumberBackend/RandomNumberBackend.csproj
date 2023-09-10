@@ -10,6 +10,7 @@
   <ItemGroup>
     <None Remove="Game\" />
     <None Remove="Microsoft.Azure.Functions.Extensions" />
+    <None Remove="Database\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">
@@ -22,5 +23,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Game\" />
+    <Folder Include="Database\" />
   </ItemGroup>
 </Project>
