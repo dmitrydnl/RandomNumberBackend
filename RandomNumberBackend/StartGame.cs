@@ -43,8 +43,7 @@ namespace RandomNumberBackend
 
             int hiddenNumber = numberGenerator.Generate();
 
-            bool result = database.CreateGame(nickname, hiddenNumber);
-            if (!result)
+            if (!database.CreateGame(nickname, hiddenNumber))
             {
                 return new BadRequestObjectResult("Game already exist");
             }
