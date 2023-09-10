@@ -7,13 +7,21 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using RandomNumberBackend.Database;
 
 namespace RandomNumberBackend
 {
-    public static class Play
+    public class Play
     {
+        private readonly IDatabase database;
+
+        public Play(IDatabase database)
+        {
+            this.database = database;
+        }
+
         [FunctionName("Play")]
-        public static async Task<IActionResult> Run(
+        public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
         {
