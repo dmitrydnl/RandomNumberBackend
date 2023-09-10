@@ -38,19 +38,19 @@ namespace RandomNumberBackend
 
             if (string.IsNullOrEmpty(nickname))
             {
-                return new BadRequestObjectResult($"nickname is empty");
+                return new BadRequestObjectResult("nickname is empty");
             }
 
             if (string.IsNullOrEmpty(myNumberRaw) || !Int32.TryParse(myNumberRaw, out int myNumber))
             {
-                return new BadRequestObjectResult($"myNumber is empty or not a number");
+                return new BadRequestObjectResult("myNumber is empty or not a number");
 
             }
 
             int? hiddenNumber = database.GetCurrentGame(nickname);
             if (hiddenNumber is null)
             {
-                return new BadRequestObjectResult($"{nickname} have not current games");
+                return new BadRequestObjectResult("current game not exist");
             }
 
             NumberValidatorStatus status = numberValidator.Validate(myNumber, hiddenNumber.Value);

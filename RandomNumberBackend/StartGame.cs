@@ -38,7 +38,7 @@ namespace RandomNumberBackend
 
             if (string.IsNullOrEmpty(nickname))
             {
-                return new BadRequestObjectResult($"nickname is empty");
+                return new BadRequestObjectResult("nickname is empty");
             }
 
             int hiddenNumber = numberGenerator.Generate();
@@ -46,10 +46,10 @@ namespace RandomNumberBackend
             bool result = database.CreateGame(nickname, hiddenNumber);
             if (!result)
             {
-                return new BadRequestObjectResult($"{nickname} already play game");
+                return new BadRequestObjectResult("game already exist");
             }
 
-            return new OkObjectResult($"{nickname} start game, hidden number is {hiddenNumber}");
+            return new OkObjectResult("game started");
         }
     }
 }
