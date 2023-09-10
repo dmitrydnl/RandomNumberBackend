@@ -9,16 +9,19 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System.Xml.Linq;
 using System.Security.Cryptography;
+using RandomNumberBackend.Database;
 using RandomNumberBackend.Game;
 
 namespace RandomNumberBackend
 {
     public class StartGame
     {
+        private readonly IDatabase database;
         private readonly INumberGenerator numberGenerator;
 
-        public StartGame(INumberGenerator numberGenerator)
+        public StartGame(IDatabase database, INumberGenerator numberGenerator)
         {
+            this.database = database;
             this.numberGenerator = numberGenerator;
         }
 
