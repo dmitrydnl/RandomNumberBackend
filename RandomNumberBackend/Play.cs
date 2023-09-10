@@ -8,16 +8,19 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using RandomNumberBackend.Database;
+using RandomNumberBackend.Game;
 
 namespace RandomNumberBackend
 {
     public class Play
     {
         private readonly IDatabase database;
+        private readonly INumberValidator numberValidator;
 
-        public Play(IDatabase database)
+        public Play(IDatabase database, INumberValidator numberValidator)
         {
             this.database = database;
+            this.numberValidator = numberValidator;
         }
 
         [FunctionName("Play")]

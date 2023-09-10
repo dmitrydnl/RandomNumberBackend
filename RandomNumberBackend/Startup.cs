@@ -13,6 +13,7 @@ namespace RandomNumberBackend
         {
             builder.Services.AddSingleton<IDatabase>(new DatabaseLocal());
             builder.Services.AddSingleton<INumberGenerator>(new NumberGenerator(1, 100));
+            builder.Services.AddSingleton<INumberValidator>(new NumberValidator());
         }
     }
 }
