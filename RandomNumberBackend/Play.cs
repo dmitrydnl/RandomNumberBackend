@@ -10,25 +10,32 @@ using Newtonsoft.Json;
 
 namespace RandomNumberBackend
 {
-    public static class RandomNumberBackend
+    public static class Play
     {
-        [FunctionName("RandomNumberBackend")]
+        [FunctionName("Play")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
         {
-            log.LogInformation("C# HTTP trigger function processed a request.");
-
-            string name = req.Query["name"];
+            string nickname = req.Query["nickname"];
+            string myNumberRaw = req.Query["myNumber"];
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             dynamic data = JsonConvert.DeserializeObject(requestBody);
-            name = name ?? data?.name;
+            nickname = nickname ?? data?.nickname;
+            myNumberRaw = myNumberRaw ?? data?.myNumber;
 
-            string responseMessage = string.IsNullOrEmpty(name)
-                ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
-                : $"Hello, {name}. This HTTP triggered function executed successfully.";
+            if (string.IsNullOrEmpty(nickname))
+            {
+                return new BadRequestResult();
+            }
 
+            if (string.IsNullOrEmpty(myNumberRaw) || !Int32.TryParse(myNumberRaw, out int myNumber))
+            {
+                return new BadRequestResult();
+            }
+
+            string responseMessage = $"{nickname} your number is {myNumber}.";
             return new OkObjectResult(responseMessage);
         }
     }
