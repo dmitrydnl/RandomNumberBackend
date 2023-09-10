@@ -44,6 +44,12 @@ namespace RandomNumberBackend
 
             }
 
+            int? hiddenNumber = database.GetCurrentGame(nickname);
+            if (hiddenNumber is null)
+            {
+                return new BadRequestObjectResult($"{nickname} have not current games");
+            }
+
             return new OkObjectResult($"{nickname} your number is {myNumber}.");
         }
     }
