@@ -16,5 +16,15 @@ namespace RandomNumberBackend.Database
         {
             return currentGames.TryAdd(nickname, hiddenNumber);
         }
+
+        public int? GetCurrentGame(string nickname)
+        {
+            if (currentGames.TryGetValue(nickname, out int hiddenNumber))
+            {
+                return hiddenNumber;
+            }
+
+            return null;
+        }
     }
 }
