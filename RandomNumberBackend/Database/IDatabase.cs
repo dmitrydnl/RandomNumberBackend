@@ -14,5 +14,7 @@ namespace RandomNumberBackend.Database
         public Dictionary<string, int> GetGlobalStatistics();
 
         public List<int> GetUserStatistics(string nickname);
+
+        public bool Authorization(string nickname, string password);
     }
 }

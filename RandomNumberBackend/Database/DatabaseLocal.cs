@@ -8,6 +8,7 @@ namespace RandomNumberBackend.Database
     {
         private readonly ConcurrentDictionary<string, int> currentGames;
         private readonly ConcurrentDictionary<string, List<int>> userGames;
+        private readonly ConcurrentDictionary<string, string> userToPassword;
 
         public DatabaseLocal()
         {
@@ -16,6 +17,11 @@ namespace RandomNumberBackend.Database
             {
                 ["cat"] = new List<int> { 37, 68 },
                 ["dog"] = new List<int> { 2, 8, 99 }
+            };
+            userToPassword = new ConcurrentDictionary<string, string>()
+            {
+                ["cat"] = "123456",
+                ["dog"] = "654321"
             };
         }
 
@@ -66,6 +72,16 @@ namespace RandomNumberBackend.Database
             }
 
             return new List<int>();
+        }
+
+        public bool Authorization(string nickname, string password)
+        {
+            if (userToPassword.TryGetValue(nickname, out string userPassword))
+            {
+                return userPassword.Equals(password);
+            }
+
+            return false;
         }
     }
 }
