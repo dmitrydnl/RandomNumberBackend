@@ -1,17 +1,20 @@
 ﻿using System;
+using System.Collections.Concurrent;
 
 namespace RandomNumberBackend.Database
 {
     public class DatabaseLocal : IDatabase
     {
-        public bool IsGameExist(string nickname)
+        private readonly ConcurrentDictionary<string, int> currentGames;
+
+        public DatabaseLocal()
         {
-            throw new NotImplementedException();
+            currentGames = new ConcurrentDictionary<string, int>();
         }
 
-        public bool CreateGame(string nickname, int hiddenNumber, DateTime now)
+        public bool CreateGame(string nickname, int hiddenNumber)
         {
-            throw new NotImplementedException();
+            return currentGames.TryAdd(nickname, hiddenNumber);
         }
     }
 }

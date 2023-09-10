@@ -30,8 +30,6 @@ namespace RandomNumberBackend
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
         {
-            DateTime now = DateTime.UtcNow;
-
             string nickname = req.Query["nickname"];
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
@@ -44,6 +42,12 @@ namespace RandomNumberBackend
             }
 
             int hiddenNumber = numberGenerator.Generate();
+
+            bool result = database.CreateGame(nickname, hiddenNumber);
+            if (!result)
+            {
+                return new BadRequestResult();
+            }
 
             string responseMessage = $"{nickname} your hidden number is {hiddenNumber}.";
             return new OkObjectResult(responseMessage);
