@@ -53,6 +53,17 @@ namespace RandomNumberBackend
                 return new BadRequestObjectResult($"{nickname} have not current games");
             }
 
+            NumberValidatorStatus status = numberValidator.Validate(myNumber, hiddenNumber.Value);
+            switch (status)
+            {
+                case NumberValidatorStatus.Greater:
+                    break;
+                case NumberValidatorStatus.Less:
+                    break;
+                case NumberValidatorStatus.Equal:
+                    break;
+            }
+
             return new OkObjectResult($"{nickname} your number is {myNumber}.");
         }
     }
