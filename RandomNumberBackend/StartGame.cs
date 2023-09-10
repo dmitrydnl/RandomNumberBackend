@@ -30,6 +30,8 @@ namespace RandomNumberBackend
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
         {
+            DateTime now = DateTime.UtcNow;
+
             string nickname = req.Query["nickname"];
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();

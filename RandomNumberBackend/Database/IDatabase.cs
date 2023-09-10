@@ -6,6 +6,6 @@ namespace RandomNumberBackend.Database
     {
         public bool IsGameExist(string nickname);
 
-        public bool CreateGame(string nickname, int hiddenNumber);
+        public bool CreateGame(string nickname, int hiddenNumber, DateTime now);
     }
 }

@@ -9,7 +9,7 @@ namespace RandomNumberBackend.Database
             throw new NotImplementedException();
         }
 
-        public bool CreateGame(string nickname, int hiddenNumber)
+        public bool CreateGame(string nickname, int hiddenNumber, DateTime now)
         {
             throw new NotImplementedException();
         }
