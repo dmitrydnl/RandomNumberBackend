@@ -47,9 +47,15 @@ namespace RandomNumberBackend.Database
             }
         }
 
-        public KeyValuePair<string, List<int>>[] GetGlobalStatistics()
+        public Dictionary<string, int> GetGlobalStatistics()
         {
-            return userGames.ToArray();
+            var result = new Dictionary<string, int>();
+            foreach (var nicknameToGames in userGames.ToArray())
+            {
+                result.Add(nicknameToGames.Key, nicknameToGames.Value.Count);
+            }
+
+            return result;
         }
 
         public List<int> GetUserStatistics(string nickname)
