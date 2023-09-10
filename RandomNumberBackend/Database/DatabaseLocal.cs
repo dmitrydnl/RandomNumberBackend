@@ -51,5 +51,15 @@ namespace RandomNumberBackend.Database
         {
             return userGames.ToArray();
         }
+
+        public List<int> GetUserStatistics(string nickname)
+        {
+            if (userGames.TryGetValue(nickname, out List<int> games))
+            {
+                return games;
+            }
+
+            return new List<int>();
+        }
     }
 }

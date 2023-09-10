@@ -12,5 +12,7 @@ namespace RandomNumberBackend.Database
         public void FinishGame(string nickname);
 
         public KeyValuePair<string, List<int>>[] GetGlobalStatistics();
+
+        public List<int> GetUserStatistics(string nickname);
     }
 }
