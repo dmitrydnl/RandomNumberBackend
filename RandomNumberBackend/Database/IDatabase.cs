@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace RandomNumberBackend.Database
 {
@@ -9,5 +10,7 @@ namespace RandomNumberBackend.Database
         public int? GetCurrentGame(string nickname);
 
         public void FinishGame(string nickname);
+
+        public KeyValuePair<string, List<int>>[] GetGlobalStatistics();
     }
 }

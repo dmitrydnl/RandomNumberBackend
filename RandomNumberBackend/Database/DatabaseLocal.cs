@@ -46,5 +46,10 @@ namespace RandomNumberBackend.Database
                 });
             }
         }
+
+        public KeyValuePair<string, List<int>>[] GetGlobalStatistics()
+        {
+            return userGames.ToArray();
+        }
     }
 }
