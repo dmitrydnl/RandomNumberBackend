@@ -9,13 +9,21 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System.Xml.Linq;
 using System.Security.Cryptography;
+using RandomNumberBackend.Game;
 
 namespace RandomNumberBackend
 {
-    public static class StartGame
+    public class StartGame
     {
+        private readonly INumberGenerator numberGenerator;
+
+        public StartGame(INumberGenerator numberGenerator)
+        {
+            this.numberGenerator = numberGenerator;
+        }
+
         [FunctionName("StartGame")]
-        public static async Task<IActionResult> Run(
+        public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
         {
@@ -30,7 +38,7 @@ namespace RandomNumberBackend
                 return new BadRequestResult();
             }
 
-            int hiddenNumber = 45;
+            int hiddenNumber = numberGenerator.Generate();
 
             string responseMessage = $"{nickname} your hidden number is {hiddenNumber}.";
             return new OkObjectResult(responseMessage);
