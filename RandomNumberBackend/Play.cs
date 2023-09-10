@@ -62,6 +62,8 @@ namespace RandomNumberBackend
                     return new BadRequestObjectResult("Your number is less");
             }
 
+            database.FinishGame(nickname);
+
             return new OkObjectResult("Your number is equal, game finished");
         }
     }
