@@ -2,7 +2,7 @@
 
 namespace RandomNumberBackend.Game
 {
-    public class NumberGenerator
+    public class NumberGenerator : INumberGenerator
     {
         private readonly Random random;
         private readonly int min;
