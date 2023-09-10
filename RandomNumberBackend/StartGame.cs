@@ -46,10 +46,10 @@ namespace RandomNumberBackend
             bool result = database.CreateGame(nickname, hiddenNumber);
             if (!result)
             {
-                return new BadRequestObjectResult("game already exist");
+                return new BadRequestObjectResult("Game already exist");
             }
 
-            return new OkObjectResult("game started");
+            return new OkObjectResult("Game started");
         }
     }
 }
